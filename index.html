@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -7,35 +8,41 @@
     <link rel="stylesheet" href="./styles.css">
     <title>Weather</title>
 </head>
+
 <body>
     <header>Weather Dashboard</header>
-    <!-- seach container -->
-    <main class="searchBox">
-        <!-- search box -->
-        <div class="searchBar">
-            <h1>Search for a City:</h1>
-            <input type="text" placeholder="San Jose">
-            <button>Search</button>
-        </div>  
-         <!-- search history box  -->
-        <div class="searchHistory">
-            <h1>Past searches:</h1>
-            <!-- insert past searched from local storage using JS -->
-        </div> 
-    </main>
-    <!-- city container -->
-    <main class="cityContainer">
-        <!-- current weather box -->
-        <div class="selectedCity">
-            <h1 class="cityAndDateText"></h1>
-            <!-- insert selected city name and today's date from JS -->
-        </div>
-        <!-- 5-day forecast box -->
-        <div class="5dayForcast">
-            <h1>5-Day Forecast:</h2>
-            <!-- insert selected city 5-day forecast from JS -->
-        </div>
-    </main>
-    <script src="./script.js"></script>
+    <section>
+        <!-- seach container -->
+        <main class="searchBox">
+            <!-- search box -->
+            <div class="searchBar">
+                <h1>Search for a City:</h1>
+                <aside class="searchNavBox">
+                    <input type="text" placeholder="San Jose" id="userInput" >
+                    <button class="searchBtn" id="searchBtn" onclick="searchBtnOnClick()">Search</button>
+                </aside>
+            </div>
+            <!-- search history box  -->
+            <div class="searchHistory">
+                <h1>Past searches:</h1>
+                <!-- insert past searched from local storage using JS -->
+            </div>
+        </main>
+        <!-- city container -->
+        <main class="cityContainer">
+            <!-- current weather box -->
+            <div class="selectedCity">
+                <h1 class="cityAndDateText"></h1>
+                <!-- insert selected city name and today's date from JS -->
+            </div>
+            <!-- 5-day forecast box -->
+            <div class="futureForecast" id="5dayForcast">
+                <h1>5-Day Forecast:</h2>
+                    <!-- insert selected city 5-day forecast from JS -->
+            </div>
+        </main>
+        <script src="./script.js"></script>
+    </section>
 </body>
+
 </html>
