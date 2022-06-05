@@ -33,6 +33,13 @@ header {
 
 h1 {
     font-size: 20px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 20px;
+    font-weight: 600;
+    padding-right: 15px;
 }
 
 .searchBox {
@@ -73,7 +80,7 @@ h1 {
     border-radius: 4px;
     font-size: 15px;
     margin: 10px 0px;
-    padding: 0 30px
+    padding: 3px 30px
 }
 
 .searchNavBox {
@@ -91,10 +98,14 @@ h1 {
 
 .selectedCity {
     display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
     font-size: 20px;
     min-width: 700px;
     min-height: 200px;
     border: 1px black solid;
+    padding-left: 10px;
 }
 
 .futureForecast {
