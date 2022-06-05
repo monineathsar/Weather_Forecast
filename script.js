@@ -7,15 +7,15 @@ async function fetchWeatherJson(city) {
                         .then(cityResponse => cityResponse.json())
                         .then(json => {return json});
 
-    console.log(jsonCity);
-    var queryWeatherUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + jsonCity[0].lat + "&lon=" + jsonCity[0].lon + "&exclude=minutely,hourly,daily,alerts&units=imperial&appid=" + APIKey;
+    
+    var queryWeatherUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + jsonCity[0].lat + "&lon=" + jsonCity[0].lon + "&exclude=minutely,hourly,alerts&units=imperial&appid=" + APIKey;
 
     var weatherRes = await fetch(queryWeatherUrl)
                 .then(response => response.json())
                 .then(json => {
                         return json;
                 });
-
+    console.log(weatherRes);
     return weatherRes;
 }
 
@@ -23,8 +23,6 @@ async function searchBtnOnClick() {
     // var city = document.getElementById("userInput").value;
     var city = "San Jose";
     var json = await fetchWeatherJson(city);
-
-    console.log(json);
 
     var outerDiv = document.querySelector(".selectedCity");
     var cityHeader = document.createElement("h2");
@@ -51,9 +49,36 @@ async function searchBtnOnClick() {
     humidityDiv.innerHTML = "Humidity: " + json.current.humidity;
     UVIndexDiv.innerHTML = "UV Index: " + json.current.uvi;
 
-    cityHeader.textContent(json.name);
-    console.log(outerDiv);    
-    console.log("complete");
+    // Future forecast
+    var futureCard = document.createElement("div");
+
+    for (var i = 1; i <= 5; i++) {
+        var futureWeather = document.createElement("ul");
+        var futureDate = document.createElement("li");
+        var futureTemp = document.createElement("li");
+        var futureWind = document.createElement("li");
+        var futureHum = document.createElement("li");
+
+        futureDate.innerHTML = moment().add(i, "day").format("M/D/YYYY");
+        futureTemp.innerHTML = json.daily[i].temp.day;
+        futureWind.innerHTML = json.daily[i].wind_speed;
+        futureHum.innerHTML = json.daily[i].humidity;
+        futureWeather.appendChild(futureDate);
+        futureWeather.appendChild(futureTemp);
+        futureWeather.appendChild(futureWind);
+        futureWeather.appendChild(futureHum);
+        
+        futureCard.appendChild(futureWeather);
+    }
+
+    var futureForecast = document.getElementById("5dayForcast");
+    futureForecast.appendChild(futureCard);
+
+
+
+
+
+
 }
 
 searchBtnOnClick();
