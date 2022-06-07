@@ -18,7 +18,7 @@ body {
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: row;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     margin-top: 10px;
 }
 
@@ -32,45 +32,56 @@ header {
     align-items: center;
 }
 
-.searchBox {
+.searchBox.cityContainer {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding-right: 10px;
     width: 300px;
 }
 
-.cityContainer .searchBar{
+.searchBar{
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
     padding: 10px 10px 0 0;
 }
 
 .searchBar {
     border-bottom: 1px black solid;
     padding-bottom: 10px;
+    margin-right: 20px;
 }
 
+/* styles of seach button */
 .searchBtn {
     background-color: dodgerblue;
     color: white;
     border-radius: 4px;
-    font-size: 15px;
+    font-size: 20px;
     margin: 10px 0px;
-    padding: 3px 30px
+    padding: 3px 30px;
 }
 
-.searchNavBox {
+/* auto capitalizes header of city searched */
+h2 {
+    text-transform: capitalize;
+}
+
+/* styles input of search bar*/
+input {
     display: flex;
     flex-direction: column;
     font-size: 20px;
     width: 280px;
+    text-transform: capitalize;
 }
+
+/* styles the search history box */
 .searchHistory {
     margin: 5px;
     padding-bottom: 10px;
@@ -78,55 +89,75 @@ header {
     height: 500px;
 }
 
+/* styles all buttons in past searches */
+button {
+    background-color: dodgerblue;
+    color: white;
+    border-radius: 4px;
+    font-size: 20px;
+    margin: 5px 0px;
+    width: 280px;
+}
+
+/* styles the box that shows current weather */
 .selectedCity {
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
-    font-size: 20px;
+    flex-wrap: wrap;
     border: 1px black solid;
+    font-size: 20px;
     padding: 0 10px 0 10px;
     width: 100%;
-    height: 280px;
-    flex-wrap: wrap;
+    min-height: 280px;
+    flex: 1 0 26%;
 }
 
+/* styles the block of list of wather info */
 .selectedCity ul {
     list-style-type: none;
     padding: 25px 0 0 0;
     margin: 0;
 }
 
+/* spaces out the list items */
 .selectedCity li {
     padding-bottom: 8px;
 }
+
+/* styles the future forecast box */
 .futureForecast {
     display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    flex-wrap: wrap;
     font-size: 20px;
     width: 100%;
     min-height: 200px;
-    justify-content: flex-start;
-    flex-direction: column;
     padding: 0 10px 0 10px;
-    flex-wrap: wrap;
 }
 
+/* styles the 5-day forecast cards */
 .futureForecast div {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    
 }
 
+/* styles each block of list in each card */
 .futureForecast ul {
     list-style-type: none;
-    padding-left: 20px;
+    padding: 10px 10px 0 0;
     margin: 0;
+    width: 200px;
+    height: 210px;
+    background-color: steelblue;
+    border: 15px white solid;
 }
 
+/* styles the list items */
 .futureForecast li {
     color: white;
-    background-color: steelblue;
     padding: 8px 15px 6px 15px;
     
 }
