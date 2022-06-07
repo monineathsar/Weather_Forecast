@@ -11,7 +11,7 @@
 
 <body>
     <header>Weather Dashboard</header>
-    <section>
+    <section class="mainContainer">
         <!-- seach container -->
         <main class="searchBox">
             <!-- search box -->
@@ -31,14 +31,14 @@
         <!-- city container -->
         <main class="cityContainer">
             <!-- current weather box -->
-            <div class="selectedCity">
+            <section class="selectedCity">
                 <!-- insert selected city name and today's date from JS -->
-            </div>
+            </section>
             <!-- 5-day forecast box -->
-            <div class="futureForecast" id="5dayForcast">
+            <section class="futureForecast" id="5dayForcast">
                 <h1>5-Day Forecast:</h2>
                     <!-- insert selected city 5-day forecast from JS -->
-            </div>
+            </section>
         </main>
         <script src="./script.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>

@@ -35,18 +35,17 @@ async function searchBtnOnClick() {
     var UVIndexDiv = document.createElement("li");
 
     outerDiv.appendChild(cityHeader);
-    outerDiv.appendChild(date);
     currentWeather.appendChild(tempDiv);
     currentWeather.appendChild(windDiv);
     currentWeather.appendChild(humidityDiv);
     currentWeather.appendChild(UVIndexDiv);
     outerDiv.appendChild(currentWeather);
 
-    cityHeader.innerHTML = city;
     date.innerHTML = moment().format("M/D/YYYY");
-    tempDiv.innerHTML = "Temp: " + json.current.temp;
-    windDiv.innerHTML = "Wind: " + json.current.wind_speed + " miles per hour";
-    humidityDiv.innerHTML = "Humidity: " + json.current.humidity;
+    cityHeader.innerHTML = city + " " + moment().format("M/D/YYYY");
+    tempDiv.innerHTML = "Temp: " + json.current.temp + " °F";
+    windDiv.innerHTML = "Wind: " + json.current.wind_speed + " mph";
+    humidityDiv.innerHTML = "Humidity: " + json.current.humidity + " %";
     UVIndexDiv.innerHTML = "UV Index: " + json.current.uvi;
 
     // Future forecast
@@ -69,15 +68,14 @@ async function searchBtnOnClick() {
         futureWeather.appendChild(futureHum);
         
         futureCard.appendChild(futureWeather);
-    }
 
+        futureTemp.innerHTML = "Temp: " + json.current.temp + " °F";
+        futureWind.innerHTML = "Wind: " + json.current.wind_speed + " mph";
+        futureHum.innerHTML = "Humidity: " + json.current.humidity + " %";
+    }
+    
     var futureForecast = document.getElementById("5dayForcast");
     futureForecast.appendChild(futureCard);
-
-
-
-
-
 
 }
 
