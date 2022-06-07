@@ -2,29 +2,66 @@ var APIKey = "52343a5cc20193d6a87c6cebbe614af7";
 
 async function fetchWeatherJson(city) {
     var queryCityUrl =  "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIKey;
-
     var jsonCity = await fetch(queryCityUrl)
                         .then(cityResponse => cityResponse.json())
                         .then(json => {return json});
+    if (jsonCity.length == 0) {
+        return [];
+    }
 
-    
     var queryWeatherUrl = "https://api.openweathermap.org/data/2.5/onecall?lat=" + jsonCity[0].lat + "&lon=" + jsonCity[0].lon + "&exclude=minutely,hourly,alerts&units=imperial&appid=" + APIKey;
-
     var weatherRes = await fetch(queryWeatherUrl)
                 .then(response => response.json())
                 .then(json => {
                         return json;
                 });
-    console.log(weatherRes);
+
     return weatherRes;
 }
 
-async function searchBtnOnClick() {
-    // var city = document.getElementById("userInput").value;
-    var city = "San Jose";
+function searchBtnOnClick() {
+    var city = document.getElementById("userInput").value;
+    selectedCity(city);
+}
+
+function renderHistory() {
+    var keys = Object.keys(localStorage);
+    
+    var histories = [];
+
+    for (var i = 0; i < keys.length; i++){
+        var value = localStorage.getItem(keys[i]);
+        var history = {
+            city: keys[i],
+            date: value
+        };
+        histories.push(history);
+    }
+    histories.sort((a,b) => b.date - a.date);
+    
+    var newSearchHistoryList = document.createElement("div");
+    for (var i = 0; i < histories.length; i++) {
+        var historyButton = document.createElement("button");
+        historyButton.innerHTML = histories[i].city;
+        historyButton.setAttribute("onclick", "selectedCity(\""+histories[i].city+"\")");
+        newSearchHistoryList.appendChild(historyButton);
+    }
+    var searchHistoryList = document.querySelector(".searchHistoryList");
+    searchHistoryList.innerHTML = newSearchHistoryList.innerHTML;
+}
+
+async function selectedCity(city) {
+    console.log(city);
     var json = await fetchWeatherJson(city);
+    if (json.length == 0) {
+        alert("Invalid city");
+        return;
+    }
+
+    localStorage.setItem(city, new Date());
 
     var outerDiv = document.querySelector(".selectedCity");
+    outerDiv.innerHTML = "";
     var cityHeader = document.createElement("h2");
     var date = document.createElement("h2");
 
@@ -50,7 +87,7 @@ async function searchBtnOnClick() {
 
     // Future forecast
     var futureCard = document.createElement("div");
-
+    console.log(json);
     for (var i = 1; i <= 5; i++) {
         var futureWeather = document.createElement("ul");
         var futureDate = document.createElement("li");
@@ -59,25 +96,25 @@ async function searchBtnOnClick() {
         var futureHum = document.createElement("li");
 
         futureDate.innerHTML = moment().add(i, "day").format("M/D/YYYY");
-        futureTemp.innerHTML = json.daily[i].temp.day;
-        futureWind.innerHTML = json.daily[i].wind_speed;
-        futureHum.innerHTML = json.daily[i].humidity;
+        futureTemp.innerHTML = "Temp: " + json.daily[i].temp.day + " °F";
+        futureWind.innerHTML = "Wind: " + json.daily[i].wind_speed + " mph";
+        futureHum.innerHTML = "Humidity: " +json.daily[i].humidity + " %";
         futureWeather.appendChild(futureDate);
         futureWeather.appendChild(futureTemp);
         futureWeather.appendChild(futureWind);
         futureWeather.appendChild(futureHum);
         
         futureCard.appendChild(futureWeather);
-
-        futureTemp.innerHTML = "Temp: " + json.current.temp + " °F";
-        futureWind.innerHTML = "Wind: " + json.current.wind_speed + " mph";
-        futureHum.innerHTML = "Humidity: " + json.current.humidity + " %";
     }
     
     var futureForecast = document.getElementById("5dayForcast");
+    futureForecast.innerHTML = "";
+    var futureForecastTitle = document.createElement("h1");
+    futureForecastTitle.innerHTML = "5-Day Forecast:";
+    futureForecast.appendChild(futureForecastTitle);
     futureForecast.appendChild(futureCard);
 
+    renderHistory();
 }
 
-searchBtnOnClick();
-
+renderHistory();
