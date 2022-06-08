@@ -23,13 +23,14 @@ body {
 }
 
 header {
-    font-size: 40px;
-    font-weight: 600;
-    color: white;
-    background-color: steelblue;
+    font-size: 60px;
+    font-weight: 800;
+    color: darkorange;
+    background-color: gainsboro;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 10px 0 10px 0;
 }
 
 .searchBox.cityContainer {
@@ -59,7 +60,7 @@ header {
 
 /* styles of seach button */
 .searchBtn {
-    background-color: dodgerblue;
+    background-color: steelblue;
     color: white;
     border-radius: 4px;
     font-size: 20px;
@@ -91,11 +92,12 @@ input {
 
 /* styles all buttons in past searches */
 button {
-    background-color: dodgerblue;
+    background-color: steelblue;
     color: white;
     border-radius: 4px;
     font-size: 20px;
-    margin: 5px 0px;
+    margin: 10px 0px;
+    padding: 5px 0px;
     width: 280px;
 }
 
@@ -106,18 +108,18 @@ button {
     justify-content: flex-start;
     flex-wrap: wrap;
     border: 1px black solid;
+    background-color: gainsboro;
     font-size: 20px;
-    padding: 0 10px 0 10px;
     width: 100%;
-    min-height: 280px;
-    flex: 1 0 26%;
+    min-height: 320px;
 }
 
 /* styles the block of list of wather info */
 .selectedCity ul {
     list-style-type: none;
-    padding: 25px 0 0 0;
+    padding: 25px 20px 0 20px;
     margin: 0;
+    font-size: 25px;
 }
 
 /* spaces out the list items */
@@ -149,8 +151,8 @@ button {
     list-style-type: none;
     padding: 10px 10px 0 0;
     margin: 0;
-    width: 200px;
-    height: 210px;
+    width: 215px;
+    height: 305px;
     background-color: steelblue;
     border: 15px white solid;
 }
@@ -160,4 +162,17 @@ button {
     color: white;
     padding: 8px 15px 6px 15px;
     
+}
+
+.row {
+    display: flex;
+    flex-direction: row;
+    margin-left: 15px;
+    font-size: 25px;
+    font-weight: 300;
+}
+
+.customImg {
+    width: 100px;
+    height: 100px;
 }
