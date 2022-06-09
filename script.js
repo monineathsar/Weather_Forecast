@@ -83,7 +83,7 @@ async function selectedCity(city) {
 
     var currentWeatherImg = document.createElement("img");
     currentWeatherImg.classList.add("customImg");
-    
+
     // current weather data as ul elements
     var currentWeather = document.createElement("ul");
     // current weather data as list elements
@@ -129,21 +129,53 @@ async function selectedCity(city) {
 
 
     // creates div element for Future forecast box
-    var futureCard = document.createElement("div");
+    // tells where future forecast data to go into correct box
+    var futureForecastBox = document.querySelector(".futureForecast");
+    // prevents old searches from diplaying on page when there is a new search
+    futureForecastBox.innerHTML = "";
+
+    // creates div element inside future forecast box
+    var futureForecastDiv = document.createElement("div");
+    var futureForecastTitle = document.createElement("h2");
+    futureForecastTitle.innerHTML = "5-Day Forecast:";
+
+    var futureWeatherDiv = document.createElement("div");
+
+    futureForecastBox.appendChild(futureForecastDiv);
+    futureForecastBox.appendChild(futureWeatherDiv);
+    futureForecastDiv.appendChild(futureForecastTitle);
+
     // for loop to create 5 future forecast cards
     for (var i = 1; i <= 5; i++) {
-
-        var dateHeader = document.createElement("h3");
-        var futureDate = document.createElement("div");
-        futureDate.classList.add("row");
-        var futureIcon = document.createElement("img");
+        // creating 5-day future forecast div inside future forecast box
+        // var futureWeather = document.createElement("div");
+        // futureCards.setAttribute("id", "cards");
+       
 
         // future forecast data as ul element
-        var futureWeather = document.createElement("ul");
+        var futureCards = document.createElement("ul");
         // future forecast as list elements
+        var futureDate = document.createElement("h3");
+        var futureIcon = document.createElement("img");
         var futureTemp = document.createElement("li");
         var futureWind = document.createElement("li");
         var futureHum = document.createElement("li");
+
+        // displays the future forecast title inside future forecast box
+        
+        // displays the furutre forecast cards inside future forecast box
+        // futureWeather.appendChild(futureCards);
+        // displays the future forecast data lists inside future cards
+        futureWeatherDiv.appendChild(futureCards);
+        futureCards.appendChild(futureDate);
+        futureCards.appendChild(futureIcon);
+        futureCards.appendChild(futureTemp);
+        futureCards.appendChild(futureWind);
+        futureCards.appendChild(futureHum);
+
+        // displays the future forecast div inside future forecast box
+        futureForecastBox.appendChild(futureWeatherDiv);
+
 
         // how each weather date will be displayed in each furture forecast card
         futureDate.innerHTML = moment().add(i, "day").format("M/D/YYYY");
@@ -151,30 +183,11 @@ async function selectedCity(city) {
         futureTemp.innerHTML = "Temp: " + json.daily[i].temp.day + " °F";
         futureWind.innerHTML = "Wind: " + json.daily[i].wind_speed + " mph";
         futureHum.innerHTML = "Humidity: " + json.daily[i].humidity + " %";
-
-        // diplays the weather data lists into one furture forecast card
-        futureDate.appendChild(dateHeader);
-        futureDate.appendChild(futureIcon);
-        futureWeather.appendChild(futureDate);
-        futureWeather.appendChild(futureTemp);
-        futureWeather.appendChild(futureWind);
-        futureWeather.appendChild(futureHum);
-
-        // displays the furutre forecast cards inside future forecast box
-        futureCard.appendChild(futureWeather);
+       
     }
 
-    // tells where future forecast data to go into correct box
-    var futureForecast = document.getElementById("5dayForcast");
-    // prevents old searches from diplaying on page when there is a new search
-    futureForecast.innerHTML = "";
-    // add title element to future forecast box
-    var futureForecastTitle = document.createElement("h1");
-    futureForecastTitle.innerHTML = "5-Day Forecast:";
-    // displays the 5-day title inside the future forecast box
-    futureForecast.appendChild(futureForecastTitle);
-    // displays the future forecast box
-    futureForecast.appendChild(futureCard);
+    
+    
 
     //re-render the history to add the newly searched city
     renderHistory();

@@ -23,7 +23,7 @@ body {
 }
 
 header {
-    font-size: 60px;
+    font-size: 50px;
     font-weight: 800;
     color: darkorange;
     background-color: gainsboro;
@@ -43,7 +43,7 @@ header {
     width: 300px;
 }
 
-.searchBar{
+.searchBar {
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -99,6 +99,7 @@ button {
     margin: 10px 0px;
     padding: 5px 0px;
     width: 280px;
+    text-transform: capitalize;
 }
 
 /* styles the box that shows current weather */
@@ -109,17 +110,16 @@ button {
     flex-wrap: wrap;
     border: 1px black solid;
     background-color: gainsboro;
-    font-size: 20px;
     width: 100%;
-    min-height: 320px;
+    min-height: 260px;
 }
 
 /* styles the block of list of wather info */
 .selectedCity ul {
     list-style-type: none;
-    padding: 25px 20px 0 20px;
+    padding: 10px 20px 0 20px;
     margin: 0;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 /* spaces out the list items */
@@ -150,11 +150,12 @@ button {
 .futureForecast ul {
     list-style-type: none;
     padding: 10px 10px 0 0;
+    font-size: 17px;
     margin: 0;
-    width: 215px;
-    height: 305px;
+    width: 180px;
+    height: 260px;
     background-color: steelblue;
-    border: 15px white solid;
+    border: 10px white solid;
 }
 
 /* styles the list items */
@@ -164,15 +165,23 @@ button {
     
 }
 
+/* ensures the city header and icon image are on the same line */
 .row {
     display: flex;
     flex-direction: row;
     margin-left: 15px;
-    font-size: 25px;
+    font-size: 20px;
     font-weight: 300;
+    flex-direction: wrap;
 }
 
+/* force selected city icon image to be 100x100 */
 .customImg {
     width: 100px;
     height: 100px;
+}
+
+h3 {
+    padding-left: 15px;
+    margin: 0;
 }
