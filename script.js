@@ -4,7 +4,7 @@ var APIKey = "52343a5cc20193d6a87c6cebbe614af7";
 // fetches data from weather API
 async function fetchWeatherJson(city) {
     // pulls all cities data available on openweather API
-    var queryCityUrl = "http://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIKey;
+    var queryCityUrl = "https://api.openweathermap.org/geo/1.0/direct?q=" + city + "&limit=1&appid=" + APIKey;
     var jsonCity = await fetch(queryCityUrl)
         .then(cityResponse => cityResponse.json())
         .then(json => {
